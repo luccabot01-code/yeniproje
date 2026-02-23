@@ -6,19 +6,19 @@ import { HelpCenterDialog } from "@/components/help-center-dialog"
 
 import { ThemeToggle } from "@/components/theme-toggle"
 import { useState, useCallback, useEffect, useRef } from "react"
-import { motion, useInView, AnimatePresence, useScroll, useTransform } from "framer-motion"
+import { motion, useInView, AnimatePresence, useScroll, useTransform, Variants } from "framer-motion"
 import { Shield, Zap, Users, Star, CheckCircle, Sparkles } from "lucide-react"
 
 // ─── Variants ──────────────────────────────────────────────────────────────
 
-const headerVariants = {
+const headerVariants: Variants = {
   hidden: { opacity: 0, y: -20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] as const } },
 }
 
-const tabContentVariants = {
+const tabContentVariants: Variants = {
   hidden: { opacity: 0, y: 16, scale: 0.99 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] as const } },
   exit: { opacity: 0, y: -10, scale: 0.99, transition: { duration: 0.22 } },
 }
 
@@ -35,7 +35,7 @@ function AnimatedTitle({ text }: { text: string }) {
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{
             duration: 0.6,
-            ease: [0.25, 0.46, 0.45, 0.94],
+            ease: [0.25, 0.46, 0.45, 0.94] as const,
             delay: 0.3 + i * 0.1,
           }}
           className="inline-block mr-[0.25em] text-gradient-title"
@@ -111,7 +111,7 @@ function RevealUp({
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-      transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay }}
+      transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as const, delay }}
       className={className}
     >
       {children}
@@ -140,7 +140,7 @@ function FeatureCard({
       ref={ref}
       initial={{ opacity: 0, y: 36, scale: 0.96 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 36, scale: 0.96 }}
-      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: index * 0.1 }}
+      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const, delay: index * 0.1 }}
       className="group relative rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/4 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none" />
@@ -166,7 +166,7 @@ function SectionDivider({ label }: { label: string }) {
       ref={ref}
       initial={{ opacity: 0, scaleX: 0 }}
       animate={inView ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
-      transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+      transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as const }}
       className="flex items-center gap-4 my-2"
     >
       <div className="h-px flex-1 bg-border" />
@@ -298,7 +298,7 @@ export function HomePageClient() {
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as const }}
                 className="hero-banner relative overflow-hidden rounded-2xl border border-border/60 px-8 py-12 sm:py-16"
               >
                 {/* Decorative rings */}
@@ -320,7 +320,7 @@ export function HomePageClient() {
                 <motion.p
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.75 }}
+                  transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const, delay: 0.75 }}
                   className="relative z-10 mt-4 text-base text-muted-foreground text-balance max-w-md mx-auto"
                 >
                   The all-in-one digital invitation and guest management platform for your big day.
@@ -331,7 +331,7 @@ export function HomePageClient() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 1.0 }}
+                transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const, delay: 1.0 }}
                 className="grid grid-cols-2 gap-4 w-full max-w-md mx-auto"
               >
                 {/* Create New Wedding — primary dark fill */}
