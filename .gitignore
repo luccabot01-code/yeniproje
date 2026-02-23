@@ -50,7 +50,6 @@ supabase/.branches/
 supabase/.temp/
 
 # --- Misc junk / one-off scripts ---
-*.mjs
 check-*.mjs
 seed*.mjs
 get-*.mjs
@@ -58,11 +57,11 @@ restore-*.mjs
 update-*.mjs
 seating-*.mjs
 schema-*.mjs
+copy-to-wedding-rsvp.mjs
 proxy.ts
 cleanup.ps1
 copy_clean.ps1
 verify_copy.ps1
-copy-to-wedding-rsvp.mjs
 
 # --- Large / generated docs ---
 CHANGELOG.md
