@@ -1,0 +1,82 @@
+# --- Dependencies ---
+node_modules/
+.pnp
+.pnp.js
+
+# --- Next.js build output ---
+.next/
+out/
+build/
+dist/
+
+# --- Environment variables (NEVER commit) ---
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# --- Vercel ---
+.vercel
+
+# --- TypeScript ---
+*.tsbuildinfo
+next-env.d.ts
+
+# --- Lock files (keep only bun.lock; ignore the rest) ---
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# --- Debug logs ---
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+debug.log
+*.log
+
+# --- OS / Editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Supabase local dev ---
+supabase/.branches/
+supabase/.temp/
+
+# --- Misc junk / one-off scripts ---
+*.mjs
+check-*.mjs
+seed*.mjs
+get-*.mjs
+restore-*.mjs
+update-*.mjs
+seating-*.mjs
+schema-*.mjs
+proxy.ts
+cleanup.ps1
+copy_clean.ps1
+verify_copy.ps1
+copy-to-wedding-rsvp.mjs
+
+# --- Large / generated docs ---
+CHANGELOG.md
+DEPLOYMENT_CHECKLIST.md
+DOCUMENTATION.md
+PRODUCTION_READY.md
+HELP_CENTER_FINAL.txt
+KULLANIM_KILAVUZU.txt
+YARDIM_MERKEZI.txt
+
+# --- Orchids / Cursor IDE ---
+.orchids/
+.cursor/
+.qoder/
+
+# --- Backup files ---
+*.backup
