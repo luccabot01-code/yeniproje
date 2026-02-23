@@ -296,9 +296,9 @@ export function DashboardHelpDialog({ open, onOpenChange }: DashboardHelpDialogP
                           <Icon className="h-3.5 w-3.5 text-background" />
                         </div>
                         {/* Title */}
-                        <span className="text-sm font-semibold text-foreground tracking-tight truncate">
-                          {section.title}
-                        </span>
+                          <span className="text-sm font-semibold text-foreground tracking-tight leading-snug">
+                            {section.title}
+                          </span>
                       </div>
                     </AccordionTrigger>
 
