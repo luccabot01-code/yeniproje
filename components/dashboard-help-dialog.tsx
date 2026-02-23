@@ -14,8 +14,6 @@ interface DashboardHelpDialogProps {
   onOpenChange?: (open: boolean) => void
 }
 
-// ─── SECTION DATA ──────────────────────────────────────────────────────────────
-
 const sections = [
   {
     id: "s1",
@@ -24,24 +22,28 @@ const sections = [
     title: "Overview & Quick Actions",
     content: [
       {
-        heading: "Live Statistic Cards",
-        body: "The four cards at the top of the Overview tab update in real time via a Supabase WebSocket subscription. Total RSVPs counts every form submission. Attending shows confirmed guests only. Not Attending tracks declines. Total Guests sums all party members across every attending RSVP — including +1s and children. No refresh is ever needed; the moment a guest submits, the numbers change on your screen.",
+        heading: "The four summary cards",
+        body: "At the top of the Overview tab you'll see four live numbers: Total RSVPs (how many people have filled in the form), Attending (those who said yes), Not Attending (those who said no), and Total Guests (the real headcount — every person in every group, including partners and children). These update the moment someone submits the form. No refreshing needed.",
       },
       {
-        heading: "Guest Responses Table",
-        body: "Every RSVP submission appears as a row with: guest name, attendance status badge, party size, contact details (email / phone if provided), submission timestamp, and any personal message left for the couple. If a guest wrote a note, a message icon (💬) appears on their row — click it to read the full text in a popup. The trash icon (🗑️) on the far right permanently deletes that RSVP entry from the database. This action cannot be undone.",
+        heading: "Reading the Guest Responses table",
+        body: "Every submission appears as a row. You can see the guest's name, whether they're coming, how many people are in their group, their contact details, and when they submitted. If a guest left you a personal note, a small message icon appears on their row — click it to read the full message in a pop-up window.",
       },
       {
-        heading: "Quick Actions Panel",
-        body: "Located in the right sidebar on the Overview tab. \"Copy Invitation Link\" copies your permanent RSVP URL to the clipboard — this is the link you share with guests. \"Open Invitation\" launches it in a new browser tab so you can preview exactly what your guests see. \"View QR Code\" opens the QR code download modal. \"Export Guest List\" downloads every RSVP submission as a CSV file (the button is disabled if no responses have been received yet).",
+        heading: "Removing a response",
+        body: "See the small trash icon on the far right of any guest row? Clicking it permanently removes that person's RSVP. Use it if someone submitted by mistake or if you need to clear a test entry. This cannot be undone.",
       },
       {
-        heading: "QR Code Modal — PNG vs SVG",
-        body: "Your QR code is available in two formats. PNG/JPG is a raster image — ideal for digital sharing (WhatsApp, social media) or printing at standard sizes. SVG is a lossless vector file that stays perfectly sharp at any size. Choose SVG for printed stationery, invitations, or signage. Both formats produce a fully scannable code with no smartphone app required — it opens directly in the guest's browser.",
+        heading: "Quick Actions panel",
+        body: "On the right side of the Overview tab you'll find four shortcuts: \"Copy Invitation Link\" copies your permanent RSVP link to paste anywhere. \"Open Invitation\" opens a preview of exactly what your guests see. \"View QR Code\" opens the download window for your QR code. \"Export Guest List\" downloads all responses as a spreadsheet — handy if you want to print a list or share it with your coordinator.",
       },
       {
-        heading: "The Canva SVG Recolor Trick",
-        body: "Download the QR code as an SVG. In Canva, click \"Upload\" → \"Upload files\" and import the SVG. Once placed on your canvas, click the QR code element, then use Canva's color picker to change the foreground to any exact hex value — your invitation's accent color, a floral blush, or a stationery gold. Because SVG is a mathematical vector format, the recolor does not degrade scan quality in any way. This is the recommended approach for high-end printed wedding stationery.",
+        heading: "QR Code — PNG or SVG?",
+        body: "PNG is a standard image file — perfect for sharing on WhatsApp, Instagram, or printing at normal sizes. SVG is a special format that stays perfectly sharp no matter how large you print it, making it ideal for printed wedding stationery and table signage. Both work equally well for scanning — guests just point their phone camera at it.",
+      },
+      {
+        heading: "Recoloring the QR code in Canva",
+        body: "Download the QR code as an SVG. In Canva, click \"Uploads\" then \"Upload files\" and bring the SVG in. Place it on your canvas, click on it, and use the color picker to change the QR code color to match your invitation — any shade of blush, gold, sage, or navy you like. Because of the SVG format, the color change doesn't affect how well it scans at all. This is the easiest way to get a perfectly on-brand QR code for printed invitations.",
       },
     ],
   },
@@ -49,23 +51,23 @@ const sections = [
     id: "s2",
     icon: Settings2,
     number: "02",
-    title: "Top Bar Controls — Customization & Editing",
+    title: "Top Bar — Editing & Display Options",
     content: [
       {
         heading: "Edit Wedding",
-        body: "Click \"Edit Wedding\" in the top bar to open a full editing modal. You can change the wedding title, date & time, venue, location URL, dress code, program notes, gift registry URL, cover photo or video, itinerary timeline, Our Story cards, and the countdown timer — all without disrupting anything. Your RSVP link and QR code are permanent identifiers tied to your account, not to any content field. No matter how many times you edit, the link guests already have will always work.",
+        body: "Click \"Edit Wedding\" in the top bar to update any detail about your wedding — the title, date and time, venue, cover photo or video, dress code, program, gift registry, timeline, and your Our Story cards. You can change anything here as many times as you like. Your RSVP link and QR code stay exactly the same — guests don't need a new link, ever.",
       },
       {
         heading: "Theme RSVP",
-        body: "Click \"Theme RSVP\" to open the theme selector. Choose from nine ready-made themes: Default (Modern), Minimalist, Rustic, Floral, Ocean, Vintage, Lavender, Emerald, and Midnight. The selected theme instantly updates the color scheme, typography tones, and background of the public invitation page. At the bottom of the dropdown is an \"Apply to Dashboard\" toggle — when enabled, the same color palette is applied to your entire admin panel too. Toggling it off always returns the dashboard to the default appearance.",
+        body: "Click \"Theme RSVP\" to choose from nine ready-made colour themes: Default, Minimalist, Rustic, Floral, Ocean, Vintage, Lavender, Emerald, and Midnight. Selecting a theme updates the look of your public invitation page instantly. At the bottom of the theme panel there's an \"Apply to Dashboard\" toggle — turn it on and the same color palette is applied to your dashboard too. Turn it off to go back to the default look.",
       },
       {
-        heading: "Sun / Moon Icon — Light & Dark Mode",
-        body: "The sun/moon toggle in the top bar switches your dashboard between Light and Dark mode. This is a personal display preference that affects only your screen — it has no effect on how the invitation page appears to guests. The transition uses the browser's View Transition API for a silky-smooth animated blend rather than an abrupt flash.",
+        heading: "Sun / Moon icon — Light & Dark mode",
+        body: "This toggle in the top bar switches your dashboard between a light and dark background. It only affects what you see on your screen — your guests always see the invitation in the theme you've chosen for them. Pick whichever you find easier on the eyes.",
       },
       {
-        heading: "Refresh",
-        body: "The Refresh button reloads all RSVP data from the database. Because the platform uses real-time Supabase subscriptions, new RSVPs arrive automatically without any manual action. The Refresh button is a safety net for edge cases where a connection hiccup may have caused a brief delay.",
+        heading: "Refresh button",
+        body: "Tapping Refresh reloads your latest guest data from scratch. New RSVPs normally appear on their own without you doing anything, but if you ever feel the numbers look out of date, a quick refresh will bring everything up to the moment.",
       },
     ],
   },
@@ -73,23 +75,23 @@ const sections = [
     id: "s3",
     icon: UtensilsCrossed,
     number: "03",
-    title: "Guest List & Catering — The Kitchen Hub",
+    title: "Guest List & Catering",
     content: [
       {
-        heading: "Summary Cards",
-        body: "At the top of the Guest List & Catering tab, four cards give your caterer an instant snapshot: Total Covers (the total number of individual attendees, split by adults and children), Meals Selected (how many people have already chosen a dish), Pending Selections (how many still haven't), and Dietary Notes (the count of guests with special dietary requirements). All four update live as RSVPs arrive.",
+        heading: "Summary cards",
+        body: "At the top of this tab, four cards give you and your caterer an at-a-glance count: total individual attendees (split by adults and children), how many have already chosen a meal, how many still haven't, and how many guests have a dietary note. All four update as new RSVPs come in.",
       },
       {
-        heading: "Catering Overview — Dynamic Progress Bars",
-        body: "Below the summary cards, the Catering Overview section renders a visual breakdown of every menu option you created. Each dish appears as a labeled progress bar showing the exact count and its percentage of total covers. If you added three menu options and 45 out of 100 guests chose the salmon, that bar fills to 45% in real time. This section only appears if you have configured custom menu options in the Edit Wedding form.",
+        heading: "Catering Overview — the meal bars",
+        body: "Below the cards, each dish you created appears as a labeled bar showing how many people chose it and what percentage of your total guests that represents. If 45 out of 100 guests picked the salmon, that bar shows 45%. The bars adjust automatically every time a new guest responds. This section only appears if you've added menu options in your wedding settings.",
       },
       {
-        heading: "Per-Guest Meal Table",
-        body: "The full table lists every individual attendee — the primary guest and each member of their accompanying party — with their name, role (Primary / Guest), age group (Adult / Child), child age range where applicable (0–3 or 3–12 years), meal selection, and any dietary notes they entered. Use the search bar to filter instantly by name or by dish. This table is designed to be handed directly to your caterer or venue coordinator.",
+        heading: "The full guest meal table",
+        body: "Every individual attendee is listed here — including all members of group RSVPs — with their name, whether they're the main guest or part of a group, their age group (adult or child), meal choice, and any dietary notes. Use the search bar to find a specific person or filter by dish name. This table is designed to hand directly to your caterer.",
       },
       {
-        heading: "Export for Caterer (CSV)",
-        body: "Click \"Export for Caterer (CSV)\" to download the complete per-guest catering data as a spreadsheet. The CSV includes every column from the table — names, roles, age groups, meal choices, and dietary notes — formatted for direct use in Excel, Numbers, or a venue management system. Send this file to your caterer the week before the wedding for accurate headcount and meal preparation.",
+        heading: "Export for Caterer",
+        body: "Click \"Export for Caterer\" to download a spreadsheet with every guest's name, meal choice, age group, and dietary notes. Send this file to your venue or catering team before the wedding. It has everything they need to prepare the right number of each dish.",
       },
     ],
   },
@@ -97,23 +99,23 @@ const sections = [
     id: "s4",
     icon: Bus,
     number: "04",
-    title: "Logistics — Travel, Lodging & Song Requests",
+    title: "Travel, Lodging & Song Requests",
     content: [
       {
-        heading: "Travel & Lodging Tab",
-        body: "This tab aggregates shuttle and hotel data automatically from every RSVP form. The Shuttle Seats Needed card sums the total headcount across all parties that requested shuttle service — giving you the exact number of seats to book with your transfer company. The Hotel Rooms Estimated card counts the parties that indicated they have booked or plan to book accommodation in your hotel block. The full table below lists every guest's transport and lodging status and supports real-time filtering.",
+        heading: "Travel & Lodging tab",
+        body: "This tab collects shuttle and hotel information from every RSVP automatically. The \"Shuttle Seats Needed\" card shows exactly how many seats to arrange with your transport company. The \"Hotel Rooms\" card counts how many groups plan to book accommodation. The full table below lists each guest's transport and lodging needs.",
       },
       {
-        heading: "Export Logistics (CSV)",
-        body: "Click \"Export Logistics (CSV)\" to download the travel and accommodation table as a spreadsheet. Share this file with your shuttle provider for seat allocation or with your hotel block coordinator for room confirmation follow-ups.",
+        heading: "Export Logistics",
+        body: "Click \"Export Logistics\" to download the travel and lodging table as a spreadsheet. Share it with your shuttle provider so they know how many seats to prepare, or with your hotel contact for room block follow-ups.",
       },
       {
-        heading: "Song Requests Tab",
-        body: "Every song submitted through the RSVP form lands here with the guest's name and their requested song. A counter at the top shows the total number of requests received. Use the search bar to filter by guest name or song title to quickly spot duplicates or must-plays. The list is ordered by submission time so you can see the most recent requests at a glance.",
+        heading: "Song Requests tab",
+        body: "Every song your guests requested through the RSVP form shows up here — with the guest's name and their song. A counter at the top shows the total number of requests. Search by guest name or song title to spot any must-plays or duplicates quickly.",
       },
       {
-        heading: "Export for DJ (CSV)",
-        body: "Click \"Export for DJ (CSV)\" to download the complete song request list as a spreadsheet. Hand this file to your DJ or live band before the reception. It includes every submission in one clean document, ready to import into any music management software or simply print out.",
+        heading: "Export for DJ",
+        body: "Click \"Export for DJ\" to download the complete song request list as a spreadsheet. Hand it to your DJ or live band before the reception. It's one clean file with every submission, ready to print out or share directly.",
       },
     ],
   },
@@ -121,23 +123,23 @@ const sections = [
     id: "s5",
     icon: Armchair,
     number: "05",
-    title: "The Drag-and-Drop Seating Chart",
+    title: "Seating Chart",
     content: [
       {
-        heading: "Adding a Table",
-        body: "In the Seating Chart tab, click \"Add New Table\" to create a new table. Give it a descriptive name (e.g. \"Bride's Family\", \"College Friends\", \"Table 4\"), an optional category label, and a maximum seating capacity. The table appears immediately on the canvas with a live seat counter showing how many spots are available.",
+        heading: "Adding a table",
+        body: "In the Seating Chart tab, click \"Add New Table\". Give the table a name — something like \"Bride's Family\", \"College Friends\", or simply \"Table 3\" — and enter how many seats it has. The table appears straight away on the canvas with a running count of available spots.",
       },
       {
-        heading: "Assigning Guests",
-        body: "All attending guests automatically populate the \"Unseated Guests\" sidebar on the left. Simply drag a guest's name from the sidebar and drop it onto any table card — or click the guest's name while a table is selected to assign them. The table's seat counter updates instantly. You can reassign guests between tables at any time by dragging them from one table to another.",
+        heading: "Seating your guests",
+        body: "All guests who said they're coming appear in the \"Unseated Guests\" list on the left side. Drag a name from that list and drop it onto any table to assign them a seat. The seat counter updates immediately. You can move guests between tables at any time — just drag them from one table to another.",
       },
       {
-        heading: "Deleting a Table",
-        body: "To remove a table, click the delete icon on the table card. Any guests who were seated at that table are automatically and safely returned to the Unseated Guests sidebar — no data is lost. This allows you to restructure your seating plan freely without worrying about losing guest assignments.",
+        heading: "Deleting a table",
+        body: "Click the delete icon on any table card to remove it. Any guests who were seated there are automatically moved back to the Unseated Guests list — nothing is lost. This makes it easy to reorganise your seating plan as your guest list changes.",
       },
       {
-        heading: "Cloud-Backed Storage",
-        body: "Unlike the Budget and Checklist tabs (which use local browser storage), your seating chart data is saved directly to Supabase. This means your seating plan is accessible from any device where you log into your dashboard — your phone, a venue coordinator's laptop, or a second computer. Changes sync the moment they are made.",
+        heading: "Your seating plan is saved online",
+        body: "Unlike the Budget and To-Do list, your seating chart is saved to the cloud. This means you can open your dashboard on your phone, your partner's laptop, or even a tablet at the venue and see the same up-to-date plan. Changes save as soon as you make them.",
       },
     ],
   },
@@ -145,23 +147,23 @@ const sections = [
     id: "s6",
     icon: Wallet,
     number: "06",
-    title: "Budget & Planning Checklist — Local Storage",
+    title: "Budget & Planning Checklist",
     content: [
       {
-        heading: "Important: Data Lives in Your Browser",
-        body: "The Budget & Expenses and Planning Checklist tabs store all their data in your browser's localStorage — not in the cloud database. This design choice prioritizes privacy and speed: your financial details and task list never leave your device. However, this means you will not see this data if you log into your dashboard from a different browser or device. RSVPs, meal selections, and seating chart data are all cloud-synced; only the Budget and Checklist are local. Keep this in mind if you switch computers.",
+        heading: "Important: these tabs are saved on this device only",
+        body: "Your Budget and To-Do List data is saved in your current browser — not online. This means your financial details stay completely private and load instantly. However, if you open your dashboard on a different phone, computer, or browser, you won't see this data there. Your RSVPs, meal selections, and seating chart are all saved online and work everywhere — only the Budget and Checklist are device-specific. Keep this in mind if you plan to switch computers.",
       },
       {
-        heading: "Setting Your Budget & Recording Expenses",
-        body: "In the Budget & Expenses tab, click the pencil icon on the Total Budget card to set your target budget. Click \"Record Expense\" to add a line item — each expense has a category (Venue, Catering, Photography, etc.), estimated and actual cost, payment status, responsible party, and an optional vendor or contract URL. A donut chart visualizes spending by category, and the progress bar turns yellow when you exceed 80% of budget and red above 100%.",
+        heading: "Setting your budget & adding expenses",
+        body: "In the Budget tab, click the pencil icon on the Total Budget card to enter your overall wedding budget. Then click \"Add Expense\" to log individual costs — venue, flowers, catering, photographer, and so on. For each item you can record the amount you expect to pay and the amount you actually paid. A chart breaks down your spending by category, and a progress bar turns yellow as you approach your limit.",
       },
       {
-        heading: "Planning Checklist",
-        body: "Tasks are organized into five time-frame categories: 12+ Months Out, 6–9 Months Out, 3 Months Out, The Final Month, and Post-Wedding. A circular progress ring at the top shows your overall completion percentage. Click the circle icon on any task to mark it complete (it will appear with a strikethrough). Click \"Add Task\" to create a custom task in any category. Hover a task to reveal the trash icon and delete it.",
+        heading: "Planning checklist",
+        body: "Your to-do list is grouped into five time windows: 12+ Months Out, 6–9 Months Out, 3 Months Out, The Final Month, and Post-Wedding. A circular progress ring at the top shows how much you've completed. Tick tasks off as you go, add your own custom tasks, or delete anything that doesn't apply to your wedding.",
       },
       {
-        heading: "Export CSV (Budget)",
-        body: "Click \"Export CSV\" in the Budget & Expenses tab to download your full financial ledger as a spreadsheet. The export includes every expense item with all its fields — estimated cost, actual cost, variance, payment status, and responsible party. This file is suitable for sharing with a financial planner, accountant, or your partner.",
+        heading: "Export Budget",
+        body: "Click \"Export CSV\" in the Budget tab to download your full expense list as a spreadsheet. It includes every line item — what you budgeted, what you actually spent, the difference, and payment status. Useful to share with a planner, accountant, or simply keep as a record.",
       },
     ],
   },
@@ -169,33 +171,31 @@ const sections = [
     id: "s7",
     icon: Trash2,
     number: "07",
-    title: "Button Glossary — What Does This Do?",
+    title: "Icon Reference — What Does This Button Do?",
     content: [
       {
-        heading: "Quick Reference for Every Icon",
-        body: "A concise reference for the action icons you will encounter throughout the dashboard.",
+        heading: "Quick guide to the action icons",
+        body: "Here's a plain-English explanation of the small icons you'll see throughout the dashboard.",
       },
       {
-        heading: "🗑️  Trash Icon",
-        body: "Permanently deletes the associated item. This applies to: a Guest RSVP (Overview tab), an Expense entry (Budget tab), a Checklist task (Planning tab), and a Seating Table (Seating Chart tab). Deletion is immediate and cannot be undone, so use it deliberately.",
+        heading: "🗑️  Trash icon",
+        body: "Permanently deletes the item it sits next to. This applies to a guest RSVP on the Overview tab, an expense entry on the Budget tab, a task on the Checklist, and a table on the Seating Chart. Deletion cannot be undone, so use it with care.",
       },
       {
-        heading: "💬  Message Icon",
-        body: "Appears on Guest RSVP rows in the Overview table when the guest left a personal note during the RSVP process. Click it to open a popup displaying the full message text.",
+        heading: "💬  Message icon",
+        body: "Appears on a guest's row in the RSVP table when they left a personal note for you during the form. Click it to read their full message in a small pop-up.",
       },
       {
-        heading: "✏️  Pencil Icon",
-        body: "Opens an inline edit mode for a specific field. Currently used on the Budget Target card to set or update your total wedding budget. Click the pencil, type the new value, and confirm.",
+        heading: "✏️  Pencil icon",
+        body: "Opens an edit field so you can update a specific value. Used on the Total Budget card to set or change your overall budget target. Click the pencil, type the new amount, and confirm.",
       },
       {
-        heading: "⬇️  Export CSV",
-        body: "Downloads the current tab's data table as a comma-separated values (.csv) file compatible with Excel, Google Sheets, and Numbers. Available in: Guest List & Catering (\"Export for Caterer\"), Song Requests (\"Export for DJ\"), Travel & Lodging (\"Export Logistics\"), and Budget & Expenses (\"Export CSV\").",
+        heading: "⬇️  Export / Download button",
+        body: "Downloads the current tab's data as a spreadsheet file you can open in Excel, Google Sheets, or Numbers. You'll find this in: Guest List & Catering (\"Export for Caterer\"), Song Requests (\"Export for DJ\"), Travel & Lodging (\"Export Logistics\"), and Budget (\"Export CSV\").",
       },
     ],
   },
 ]
-
-// ─── COMPONENT ─────────────────────────────────────────────────────────────────
 
 export function DashboardHelpDialog({ open, onOpenChange }: DashboardHelpDialogProps) {
   return (
@@ -205,7 +205,7 @@ export function DashboardHelpDialog({ open, onOpenChange }: DashboardHelpDialogP
         overlayClassName="bg-black/60 backdrop-blur-sm"
         showCloseButton={false}
       >
-        <DialogTitle className="sr-only">Dashboard Help — Cockpit Manual</DialogTitle>
+        <DialogTitle className="sr-only">Dashboard Help — Your Control Panel Guide</DialogTitle>
 
         {/* ── Header ── */}
         <motion.div
@@ -214,12 +214,9 @@ export function DashboardHelpDialog({ open, onOpenChange }: DashboardHelpDialogP
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* Dot grid texture */}
           <div className="absolute inset-0 opacity-[0.06] bg-[radial-gradient(circle,_rgba(255,255,255,0.8)_1px,_transparent_1px)] bg-[length:22px_22px]" />
-          {/* Glowing orb */}
           <div className="pointer-events-none absolute -top-20 -right-20 w-56 h-56 rounded-full bg-white/5 blur-3xl" />
 
-          {/* Close button */}
           <motion.button
             onClick={() => onOpenChange?.(false)}
             className="absolute top-5 right-5 p-2.5 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200 z-50 cursor-pointer"
@@ -234,7 +231,6 @@ export function DashboardHelpDialog({ open, onOpenChange }: DashboardHelpDialogP
           </motion.button>
 
           <div className="relative z-10">
-            {/* Icon badge */}
             <motion.div
               className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white/10 border border-white/15 mb-5"
               initial={{ scale: 0, rotate: -180 }}
@@ -259,7 +255,7 @@ export function DashboardHelpDialog({ open, onOpenChange }: DashboardHelpDialogP
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.38, delay: 0.28 }}
             >
-              Your cockpit manual — every tab, button, and feature explained so you can run your wedding command center with confidence.
+              A plain-English guide to every tab and button in your dashboard — so you can manage your wedding day with confidence.
             </motion.p>
           </div>
         </motion.div>
@@ -287,18 +283,15 @@ export function DashboardHelpDialog({ open, onOpenChange }: DashboardHelpDialogP
                   >
                     <AccordionTrigger className="px-5 py-4 hover:no-underline hover:bg-muted/40 transition-colors [&[data-state=open]]:bg-muted/30">
                       <div className="flex items-center gap-3.5 flex-1 min-w-0">
-                        {/* Number badge */}
                         <span className="flex-shrink-0 text-[10px] font-bold text-muted-foreground tracking-widest w-6 text-right">
                           {section.number}
                         </span>
-                        {/* Icon */}
                         <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-foreground flex items-center justify-center shadow-sm">
                           <Icon className="h-3.5 w-3.5 text-background" />
                         </div>
-                        {/* Title */}
-                          <span className="text-sm font-semibold text-foreground tracking-tight leading-snug">
-                            {section.title}
-                          </span>
+                        <span className="text-sm font-semibold text-foreground tracking-tight leading-snug">
+                          {section.title}
+                        </span>
                       </div>
                     </AccordionTrigger>
 
@@ -332,15 +325,15 @@ export function DashboardHelpDialog({ open, onOpenChange }: DashboardHelpDialogP
         >
           <div className="flex items-center gap-2 mb-3">
             <Sparkles className="h-3.5 w-3.5 text-foreground" />
-            <span className="text-xs font-semibold text-foreground uppercase tracking-wider">Tips Worth Knowing</span>
+            <span className="text-xs font-semibold text-foreground uppercase tracking-wider">Good to Know</span>
           </div>
           <ul className="space-y-2.5">
             {[
-              { label: "Budget & Checklist are local.", body: "These tabs use localStorage — your data is private and instant, but only available on the browser/device you used to create it. RSVPs and seating are in the cloud." },
-              { label: "Seating chart is cloud-backed.", body: "Unlike Budget and Checklist, seating assignments sync to Supabase and are accessible from any device you log into." },
-              { label: "Editing never breaks your link.", body: "You can rewrite every field, swap the cover video, and change themes freely. Your RSVP link and QR code are permanent — guests never need a new link." },
-              { label: "Canva SVG trick.", body: "Download the QR code as SVG and import into Canva to recolor it to your exact palette. Scan quality is fully preserved in vector format." },
-              { label: "Real-time, always.", body: "Supabase WebSocket subscriptions push RSVPs to your dashboard the instant a guest submits. Stats, tables, and catering data all update without a refresh." },
+              { label: "Budget & Checklist stay on this device.", body: "These two tabs save data in your current browser for privacy. Switch to another device and you won't see them there. RSVPs and seating are saved online." },
+              { label: "Seating chart is available everywhere.", body: "Your table assignments are saved online, so you can check or edit the seating plan from any device you log into." },
+              { label: "Editing never breaks your link.", body: "Change the cover photo, update the text, swap the theme — your guests' link and QR code stay the same and always work." },
+              { label: "Canva QR tip.", body: "Download the QR code as SVG, bring it into Canva, and recolor it to match your invitation palette. Scan quality is unaffected." },
+              { label: "Guest numbers update instantly.", body: "The moment someone fills in your form, the counts in your dashboard change on their own. You don't need to refresh." },
             ].map((tip, i) => (
               <li key={i} className="flex items-start gap-2.5 text-xs leading-relaxed text-muted-foreground">
                 <div className="w-1 h-1 rounded-full bg-foreground/50 mt-[5px] flex-shrink-0" />
@@ -353,7 +346,7 @@ export function DashboardHelpDialog({ open, onOpenChange }: DashboardHelpDialogP
           </ul>
         </motion.div>
 
-        {/* ── Footer — always visible ── */}
+        {/* ── Footer ── */}
         <motion.div
           className="mx-5 md:mx-8 mb-6 rounded-xl border border-dashed border-border bg-background p-5"
           initial={{ opacity: 0, y: 8 }}
