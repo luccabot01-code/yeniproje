@@ -15,9 +15,10 @@ interface RSVPTableProps {
   rsvps: RSVP[]
   eventId: string
   slug: string
+  onDelete?: (id: string) => void
 }
 
-export function RSVPTable({ rsvps, eventId, slug }: RSVPTableProps) {
+export function RSVPTable({ rsvps, eventId, slug, onDelete }: RSVPTableProps) {
   const [deletingId, setDeletingId] = useState<string | null>(null)
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [rsvpToDelete, setRsvpToDelete] = useState<RSVP | null>(null)
@@ -46,7 +47,8 @@ export function RSVPTable({ rsvps, eventId, slug }: RSVPTableProps) {
 
       if (error) throw error
 
-      // The realtime subscription in dashboard-client will handle removing from state
+        // Immediately update parent state for instant UI feedback
+        onDelete?.(rsvpToDelete.id)
     } catch (error) {
       console.error("[v0] Delete RSVP error:", error)
       alert("Failed to delete RSVP. Please try again.")

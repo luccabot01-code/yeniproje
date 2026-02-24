@@ -231,7 +231,7 @@ export function DashboardClient({ initialEvent, slug, eventId }: DashboardClient
                   <div className="flex flex-col gap-6">
                     <DashboardStats rsvps={rsvps} />
                     <div className="flex-1">
-                      <RSVPTable rsvps={rsvps} eventId={event.id} slug={slug} />
+                        <RSVPTable rsvps={rsvps} eventId={event.id} slug={slug} onDelete={(id) => setRsvps(prev => prev.filter(r => r.id !== id))} />
                     </div>
                   </div>
                   <div className="space-y-6 lg:order-none order-first">
