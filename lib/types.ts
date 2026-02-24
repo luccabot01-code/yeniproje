@@ -68,6 +68,7 @@ export interface Event {
   show_menu?: boolean
   show_song_request?: boolean
   show_travel_lodging?: boolean
+  show_wedding_details?: boolean
   our_story?: OurStoryItem[]
   menu_options_jsonb?: MenuOption[]
   /** Alias — same column, used in catering step */
@@ -109,6 +110,7 @@ export interface CreateEventInput {
   show_menu?: boolean
   show_song_request?: boolean
   show_travel_lodging?: boolean
+  show_wedding_details?: boolean
   our_story?: OurStoryItem[]
   menu_options_jsonb?: MenuOption[]
 }
@@ -182,6 +184,7 @@ export interface UpdateEventInput {
   show_menu?: boolean
   show_song_request?: boolean
   show_travel_lodging?: boolean
+  show_wedding_details?: boolean
   our_story?: OurStoryItem[]
   menu_options_jsonb?: MenuOption[]
 }

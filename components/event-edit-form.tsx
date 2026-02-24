@@ -51,8 +51,9 @@ export function EventEditForm({ event, onSuccess }: EventEditFormProps) {
         show_itinerary: event.show_itinerary ?? true,
         show_our_story: event.show_our_story ?? true,
         show_menu: event.show_menu ?? true,
-        show_song_request: event.show_song_request ?? true,
-        show_travel_lodging: event.show_travel_lodging ?? true,
+      show_song_request: event.show_song_request ?? true,
+      show_travel_lodging: event.show_travel_lodging ?? true,
+      show_wedding_details: event.show_wedding_details ?? true,
       our_story: event.our_story || [],
       menu_options_jsonb: event.menu_options_jsonb || [],
   })
@@ -172,6 +173,7 @@ export function EventEditForm({ event, onSuccess }: EventEditFormProps) {
             show_menu: formData.show_menu,
             show_song_request: formData.show_song_request,
             show_travel_lodging: formData.show_travel_lodging,
+            show_wedding_details: formData.show_wedding_details,
           our_story: formData.our_story?.filter((item: OurStoryItem) => item.title || item.description || item.image_url) || [],
           menu_options_jsonb: formData.menu_options_jsonb?.filter((item: MenuOption) => item.title) || [],
       }
@@ -545,6 +547,25 @@ export function EventEditForm({ event, onSuccess }: EventEditFormProps) {
               id="show_countdown_edit"
               checked={formData.show_countdown ?? false}
               onCheckedChange={(checked) => setFormData({ ...formData, show_countdown: checked })}
+            />
+          </div>
+        </div>
+
+        {/* Wedding Details */}
+        <div className="space-y-4 pt-4 border-t border-border">
+          <div className="flex items-center justify-between gap-4">
+            <div className="space-y-1">
+              <Label htmlFor="show_wedding_details_edit" className="text-base font-medium cursor-pointer">
+                Show Wedding Details
+              </Label>
+              <p className="text-sm text-muted-foreground">
+                Show the date, location, registry, dress code and notes card on the RSVP page.
+              </p>
+            </div>
+            <Switch
+              id="show_wedding_details_edit"
+              checked={formData.show_wedding_details ?? true}
+              onCheckedChange={(checked) => setFormData({ ...formData, show_wedding_details: checked })}
             />
           </div>
         </div>

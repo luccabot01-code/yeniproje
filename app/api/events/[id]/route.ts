@@ -37,6 +37,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
       if (body.show_menu !== undefined) updateData.show_menu = body.show_menu
       if (body.show_song_request !== undefined) updateData.show_song_request = body.show_song_request
       if (body.show_travel_lodging !== undefined) updateData.show_travel_lodging = body.show_travel_lodging
+      if (body.show_wedding_details !== undefined) updateData.show_wedding_details = body.show_wedding_details
       if (body.our_story !== undefined) updateData.our_story = body.our_story
       if (body.menu_options_jsonb !== undefined) updateData.menu_options_jsonb = body.menu_options_jsonb
 

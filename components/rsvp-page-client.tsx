@@ -261,6 +261,7 @@ export function RSVPPageClient({ event }: RSVPPageClientProps) {
             )}
 
             {/* ── Event Details Card ── */}
+            {event.show_wedding_details !== false && (
             <FadeUp delay={0.1}>
               <section
                 aria-label="Wedding details"
@@ -358,10 +359,11 @@ export function RSVPPageClient({ event }: RSVPPageClientProps) {
                     </div>
                   )}
                 </div>
-              </section>
-            </FadeUp>
+                </section>
+              </FadeUp>
+            )}
 
-            {/* ── Countdown ── */}
+              {/* ── Countdown ── */}
             {event.show_countdown && (
               <FadeUp delay={0.05}>
                 <EventCountdown eventDate={event.date} />
