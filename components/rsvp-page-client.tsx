@@ -254,7 +254,7 @@ export function RSVPPageClient({ event }: RSVPPageClientProps) {
             <div className="mx-auto max-w-2xl space-y-4 sm:space-y-5">
 
             {/* Our Story */}
-            {event.our_story && event.our_story.length > 0 && (
+            {event.show_our_story !== false && event.our_story && event.our_story.length > 0 && (
               <FadeUp delay={0.05}>
                 <OurStorySection storyItems={event.our_story} />
               </FadeUp>
@@ -368,8 +368,8 @@ export function RSVPPageClient({ event }: RSVPPageClientProps) {
               </FadeUp>
             )}
 
-            {/* ── Itinerary ── */}
-            {event.itinerary && event.itinerary.length > 0 && (
+              {/* ── Itinerary ── */}
+              {event.show_itinerary !== false && event.itinerary && event.itinerary.length > 0 && (
               <FadeUp delay={0.05}>
                   <ItinerarySection itinerary={event.itinerary} />
               </FadeUp>

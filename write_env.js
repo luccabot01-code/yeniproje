@@ -1,0 +1,7 @@
+const fs = require('fs');
+const content = `NEXT_PUBLIC_SUPABASE_URL=https://mlkvxthnljxlbjjubsam.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1sa3Z4dGhubGp4bGJqanVic2FtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5Njk0NDUsImV4cCI6MjA4MzU0NTQ0NX0._KBwLE6P_eXqwHrO6U0SbtZiXwE3yPzNZyDR3P9h_pk
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1sa3Z4dGhubGp4bGJqanVic2FtIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2Nzk2OTQ0NSwiZXhwIjoyMDgzNTQ1NDQ1fQ.kOVRaeYyOsaH9965biLEGqpZJWyYCsryfGUa2fTC0_w
+`;
+fs.writeFileSync('C:/Users/MSI/Desktop/wedding-rsvp/.env.local', content, 'utf8');
+console.log('Written');

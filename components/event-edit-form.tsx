@@ -10,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import type { Event, UpdateEventInput, ItineraryItem, OurStoryItem, MenuOption } from "@/lib/types"
 import { createClient } from "@/lib/supabase/client"
-import { Upload, X, Clock, Plus, Trash2, ArrowUp, ArrowDown, Heart, UtensilsCrossed } from "lucide-react"
+import { Upload, X, Clock, Plus, Trash2, ArrowUp, ArrowDown, Heart, UtensilsCrossed, Music, Car } from "lucide-react"
 import { Switch } from "@/components/ui/switch"
 
 interface EventEditFormProps {
@@ -46,10 +46,15 @@ export function EventEditForm({ event, onSuccess }: EventEditFormProps) {
     theme_style: event.theme_style || "minimalist",
     host_email: event.host_email,
     registry_url: event.registry_url || "",
-    itinerary: event.itinerary || [],
-    show_countdown: event.show_countdown ?? false,
-    our_story: event.our_story || [],
-    menu_options_jsonb: event.menu_options_jsonb || [],
+        itinerary: event.itinerary || [],
+        show_countdown: event.show_countdown ?? false,
+        show_itinerary: event.show_itinerary ?? true,
+        show_our_story: event.show_our_story ?? true,
+        show_menu: event.show_menu ?? true,
+        show_song_request: event.show_song_request ?? true,
+        show_travel_lodging: event.show_travel_lodging ?? true,
+      our_story: event.our_story || [],
+      menu_options_jsonb: event.menu_options_jsonb || [],
   })
 
   const handleStoryImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
@@ -160,10 +165,15 @@ export function EventEditForm({ event, onSuccess }: EventEditFormProps) {
         media_type: photoUrl ? mediaType : undefined,
         registry_url: formData.registry_url || undefined,
         location_url: formData.location_url || undefined,
-        itinerary: formData.itinerary?.filter((item: ItineraryItem) => item.time || item.title) || [],
-        show_countdown: formData.show_countdown,
-        our_story: formData.our_story?.filter((item: OurStoryItem) => item.title || item.description || item.image_url) || [],
-        menu_options_jsonb: formData.menu_options_jsonb?.filter((item: MenuOption) => item.title) || [],
+            itinerary: formData.itinerary?.filter((item: ItineraryItem) => item.time || item.title) || [],
+            show_countdown: formData.show_countdown,
+            show_itinerary: formData.show_itinerary,
+            show_our_story: formData.show_our_story,
+            show_menu: formData.show_menu,
+            show_song_request: formData.show_song_request,
+            show_travel_lodging: formData.show_travel_lodging,
+          our_story: formData.our_story?.filter((item: OurStoryItem) => item.title || item.description || item.image_url) || [],
+          menu_options_jsonb: formData.menu_options_jsonb?.filter((item: MenuOption) => item.title) || [],
       }
 
       const response = await fetch(`/api/events/${event.id}`, {
@@ -205,7 +215,7 @@ export function EventEditForm({ event, onSuccess }: EventEditFormProps) {
 
         {/* Photo / Video */}
         <div className="space-y-2">
-          <Label htmlFor="photo">Upload Wedding Photo or Video (Optional)</Label>
+            <Label htmlFor="photo">Upload Wedding Photo or Video</Label>
           {!photoPreview ? (
             <div className="relative">
               <Input
@@ -301,7 +311,7 @@ export function EventEditForm({ event, onSuccess }: EventEditFormProps) {
 
         {/* Location URL */}
         <div className="space-y-2">
-          <Label htmlFor="location_url">Location URL (Optional)</Label>
+            <Label htmlFor="location_url">Location URL</Label>
           <Input
             id="location_url"
             type="url"
@@ -315,7 +325,7 @@ export function EventEditForm({ event, onSuccess }: EventEditFormProps) {
 
         {/* Registry URL */}
         <div className="space-y-2">
-          <Label htmlFor="registry_url">Gift Registry or Fund URL (Optional)</Label>
+            <Label htmlFor="registry_url">Gift Registry or Fund URL</Label>
           <Input
             id="registry_url"
             type="url"
@@ -329,7 +339,7 @@ export function EventEditForm({ event, onSuccess }: EventEditFormProps) {
 
         {/* Dress Code */}
         <div className="space-y-2">
-          <Label htmlFor="dress_code">Dress Code (Optional)</Label>
+            <Label htmlFor="dress_code">Dress Code</Label>
           <Input
             id="dress_code"
             value={formData.dress_code}
@@ -341,7 +351,7 @@ export function EventEditForm({ event, onSuccess }: EventEditFormProps) {
 
         {/* Program Notes */}
         <div className="space-y-2">
-          <Label htmlFor="program_notes">Program / Notes (Optional)</Label>
+            <Label htmlFor="program_notes">Program / Notes</Label>
           <Textarea
             id="program_notes"
             value={formData.program_notes}
@@ -353,15 +363,22 @@ export function EventEditForm({ event, onSuccess }: EventEditFormProps) {
           />
         </div>
 
-        {/* Event Itinerary */}
-        <div className="space-y-4 pt-4 border-t border-border">
-          <div>
-            <Label className="text-base font-semibold flex items-center gap-2">
-              <Clock className="h-4 w-4" />
-              Wedding Day Itinerary (Optional)
-            </Label>
-            <p className="text-sm text-muted-foreground mt-1">Add a timeline of activities for your guests</p>
-          </div>
+          {/* Event Itinerary */}
+          <div className="space-y-4 pt-4 border-t border-border">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <Label className="text-base font-semibold flex items-center gap-2">
+                  <Clock className="h-4 w-4" />
+                    Wedding Day Itinerary
+                </Label>
+                <p className="text-sm text-muted-foreground mt-1">Add a timeline of activities for your guests</p>
+              </div>
+              <Switch
+                id="show_itinerary_edit"
+                checked={formData.show_itinerary ?? true}
+                onCheckedChange={(checked) => setFormData({ ...formData, show_itinerary: checked })}
+              />
+            </div>
           {(formData.itinerary || []).map((item: ItineraryItem, index: number) => (
             <div
               key={index}
@@ -436,15 +453,22 @@ export function EventEditForm({ event, onSuccess }: EventEditFormProps) {
           </Button>
         </div>
 
-        {/* Menu Options */}
-        <div className="space-y-4 pt-4 border-t border-border">
-          <div>
-            <Label className="text-base font-semibold flex items-center gap-2">
-              <UtensilsCrossed className="h-4 w-4" />
-              Menu Options (Optional)
-            </Label>
-            <p className="text-sm text-muted-foreground mt-1">Add custom menu choices for your guests to select when they RSVP</p>
-          </div>
+          {/* Menu Options */}
+          <div className="space-y-4 pt-4 border-t border-border">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <Label className="text-base font-semibold flex items-center gap-2">
+                  <UtensilsCrossed className="h-4 w-4" />
+                    Menu Options
+                </Label>
+                <p className="text-sm text-muted-foreground mt-1">Add custom menu choices for your guests to select when they RSVP</p>
+              </div>
+              <Switch
+                id="show_menu_edit"
+                checked={formData.show_menu ?? true}
+                onCheckedChange={(checked) => setFormData({ ...formData, show_menu: checked })}
+              />
+            </div>
           {(formData.menu_options_jsonb || []).map((item: MenuOption, index: number) => (
             <div
               key={index}
@@ -525,15 +549,58 @@ export function EventEditForm({ event, onSuccess }: EventEditFormProps) {
           </div>
         </div>
 
-        {/* Our Story */}
+        {/* Song Request */}
         <div className="space-y-4 pt-4 border-t border-border">
+          <div className="flex items-center justify-between gap-4">
             <div>
               <Label className="text-base font-semibold flex items-center gap-2">
-                <Heart className="h-4 w-4" />
-                Manage Our Story (Optional)
+                <Music className="h-4 w-4" />
+                Song Request
               </Label>
-              <p className="text-sm text-muted-foreground mt-1">Share your love story with your guests on the RSVP page</p>
+              <p className="text-sm text-muted-foreground mt-1">Ask guests what song will get them on the dance floor</p>
             </div>
+            <Switch
+              id="show_song_request_edit"
+              checked={formData.show_song_request ?? true}
+              onCheckedChange={(checked) => setFormData({ ...formData, show_song_request: checked })}
+            />
+          </div>
+        </div>
+
+        {/* Travel & Lodging */}
+        <div className="space-y-4 pt-4 border-t border-border">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <Label className="text-base font-semibold flex items-center gap-2">
+                <Car className="h-4 w-4" />
+                Travel & Lodging
+              </Label>
+              <p className="text-sm text-muted-foreground mt-1">Ask guests about shuttle and hotel needs in the RSVP form</p>
+            </div>
+            <Switch
+              id="show_travel_lodging_edit"
+              checked={formData.show_travel_lodging ?? true}
+              onCheckedChange={(checked) => setFormData({ ...formData, show_travel_lodging: checked })}
+            />
+          </div>
+        </div>
+
+          {/* Our Story */}
+          <div className="space-y-4 pt-4 border-t border-border">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <Label className="text-base font-semibold flex items-center gap-2">
+                    <Heart className="h-4 w-4" />
+                      Manage Our Story
+                  </Label>
+                  <p className="text-sm text-muted-foreground mt-1">Share your love story with your guests on the RSVP page</p>
+                </div>
+                <Switch
+                  id="show_our_story_edit"
+                  checked={formData.show_our_story ?? true}
+                  onCheckedChange={(checked) => setFormData({ ...formData, show_our_story: checked })}
+                />
+              </div>
             {(formData.our_story || []).map((item: OurStoryItem, index: number) => (
               <div
                 key={index}
@@ -625,7 +692,7 @@ export function EventEditForm({ event, onSuccess }: EventEditFormProps) {
 
                 {/* Date */}
                 <div>
-                  <Label className="text-xs text-muted-foreground mb-1 block">Date (Optional)</Label>
+                  <Label className="text-xs text-muted-foreground mb-1 block">Date</Label>
                   <Input
                     value={item.date || ""}
                     onChange={(e) => {

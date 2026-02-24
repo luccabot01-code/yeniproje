@@ -63,6 +63,11 @@ export interface Event {
   registry_url?: string
   itinerary?: ItineraryItem[]
   show_countdown?: boolean
+  show_itinerary?: boolean
+  show_our_story?: boolean
+  show_menu?: boolean
+  show_song_request?: boolean
+  show_travel_lodging?: boolean
   our_story?: OurStoryItem[]
   menu_options_jsonb?: MenuOption[]
   /** Alias — same column, used in catering step */
@@ -99,6 +104,11 @@ export interface CreateEventInput {
   registry_url?: string
   itinerary?: ItineraryItem[]
   show_countdown?: boolean
+  show_itinerary?: boolean
+  show_our_story?: boolean
+  show_menu?: boolean
+  show_song_request?: boolean
+  show_travel_lodging?: boolean
   our_story?: OurStoryItem[]
   menu_options_jsonb?: MenuOption[]
 }
@@ -167,6 +177,11 @@ export interface UpdateEventInput {
   registry_url?: string
   itinerary?: ItineraryItem[]
   show_countdown?: boolean
+  show_itinerary?: boolean
+  show_our_story?: boolean
+  show_menu?: boolean
+  show_song_request?: boolean
+  show_travel_lodging?: boolean
   our_story?: OurStoryItem[]
   menu_options_jsonb?: MenuOption[]
 }

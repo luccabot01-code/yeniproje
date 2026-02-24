@@ -101,11 +101,13 @@ export function RSVPForm({ event, isPreview = false, isModal = false, onSuccess 
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  // Derive menu list — support both column names
+  // Derive menu list — support both column names; hide if show_menu is false
   const menus: MenuOption[] =
-    (event.menu_options_jsonb && event.menu_options_jsonb.length > 0
-      ? event.menu_options_jsonb
-      : event.custom_menus ?? [])
+    event.show_menu === false
+      ? []
+      : (event.menu_options_jsonb && event.menu_options_jsonb.length > 0
+          ? event.menu_options_jsonb
+          : event.custom_menus ?? [])
 
   const hasMenus = menus.length > 0
 
@@ -597,10 +599,10 @@ export function RSVPForm({ event, isPreview = false, isModal = false, onSuccess 
             </motion.div>
           )}
 
-            {/* ── Song Request ── only when attending ── */}
-            {isAttending && (
+          {/* ── Song Request ── only when attending and show_song_request is not false ── */}
+          {isAttending && event.show_song_request !== false && (
             <motion.div custom={5} variants={isModal ? itemVariants : undefined} initial={initial} animate={animate} className="space-y-2">
-              <Label htmlFor="song_request">What song will get you on the dance floor? (Optional)</Label>
+              <Label htmlFor="song_request">What song will get you on the dance floor?</Label>
               <Input
                 id="song_request"
                 value={songRequest}
@@ -611,8 +613,8 @@ export function RSVPForm({ event, isPreview = false, isModal = false, onSuccess 
             </motion.div>
             )}
 
-              {/* ── Travel & Lodging ── */}
-              {isAttending && (
+            {/* ── Travel & Lodging ── */}
+            {isAttending && event.show_travel_lodging !== false && (
               <motion.div custom={6} variants={isModal ? itemVariants : undefined} initial={initial} animate={animate} className="space-y-5 pt-4 border-t border-border">
                 <div>
                   <Label className="text-base font-semibold">Travel & Lodging</Label>
@@ -655,7 +657,7 @@ export function RSVPForm({ event, isPreview = false, isModal = false, onSuccess 
 
             {/* ── Message to Host ── */}
             <motion.div custom={7} variants={isModal ? itemVariants : undefined} initial={initial} animate={animate} className="space-y-2">
-              <Label htmlFor="message">Message to Host (Optional)</Label>
+              <Label htmlFor="message">Message to Host</Label>
               <Textarea
                 id="message"
                 value={message}

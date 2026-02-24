@@ -249,7 +249,7 @@ export function SeatingChartDashboard({ rsvps, eventId }: SeatingChartDashboardP
                   placeholder="e.g., Family Table, Table 1" autoFocus />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="tableCategory">Category <span className="text-muted-foreground font-normal">(Optional)</span></Label>
+                  <Label htmlFor="tableCategory">Category</Label>
                 <Input id="tableCategory" value={newTableCategory} onChange={(e) => setNewTableCategory(e.target.value)}
                   placeholder="e.g., Bride's Family" />
               </div>
